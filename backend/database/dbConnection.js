@@ -10,7 +10,7 @@ dotenv.config()
     }).then(()=>{ //agar connect ho jaye toh!
        console.log("Changes Done MongoDB Connected Sucessfully !")
     }).catch((error)=>{
-        console.log(`Failed to connect ${error}`) //warna error de do console me!
+        console.log(`OK done Failed to connect ${error}`) //warna error de do console me!
     })
     
 }
