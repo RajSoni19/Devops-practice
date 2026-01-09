@@ -8,7 +8,7 @@ dotenv.config()
        dbName: "Job_Portal"
 
     }).then(()=>{ //agar connect ho jaye toh!
-       console.log("Done MongoDB Connected Sucessfully !")
+       console.log("Changes Done MongoDB Connected Sucessfully !")
     }).catch((error)=>{
         console.log(`Failed to connect ${error}`) //warna error de do console me!
     })
