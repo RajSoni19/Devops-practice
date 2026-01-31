@@ -36,6 +36,7 @@ const App = () => {
     };
     fetchUser();
   }, [isAuthorized, setIsAuthorized, setUser]);
+  let test="test"
   return (
     <>
       <BrowserRouter>
