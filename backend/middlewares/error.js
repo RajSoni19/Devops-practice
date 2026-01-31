@@ -5,34 +5,34 @@ class ErrorHandler extends Error {
   }
 }
 
-export const errorMiddleware = (err, req, res, next) => {
+export const errorMiddleware = (err, req, res) => {
   if (typeof err === 'string') {
     return res.status(500).json({
       success: false,
-      message: err
+      message: err,
     });
   }
-  
+
   let error = { ...err };
-  error.message = err.message || "Internal Server Error";
+  error.message = err.message || 'Internal Server Error';
   error.statusCode = err.statusCode || 500;
 
-  if (err.name === "CastError") {
+  if (err.name === 'CastError') {
     const message = `Resource not found. Invalid ${err.path}`;
     error = new ErrorHandler(message, 400);
   }
-  
+
   if (err.code === 11000) {
     const message = `Duplicate ${Object.keys(err.keyValue)} Entered`;
     error = new ErrorHandler(message, 400);
   }
-  
-  if (err.name === "JsonWebTokenError") {
+
+  if (err.name === 'JsonWebTokenError') {
     const message = `Json Web Token is invalid, Try again please!`;
     error = new ErrorHandler(message, 400);
   }
-  
-  if (err.name === "TokenExpiredError") {
+
+  if (err.name === 'TokenExpiredError') {
     const message = `Json Web Token is expired, Try again please!`;
     error = new ErrorHandler(message, 400);
   }

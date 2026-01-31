@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { useContext, useEffect, useState } from "react";
 import { Context } from "../../main";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -36,7 +37,7 @@ const MyApplications = () => {
     } catch (error) {
       toast.error(error.response.data.message);
     }
-  }, [isAuthorized]);
+  }, [isAuthorized, user]);
 
   if (!isAuthorized) {
     navigateTo("/");
@@ -165,6 +166,22 @@ const JobSeekerCard = ({ element, deleteApplication, openModal }) => {
   );
 };
 
+JobSeekerCard.propTypes = {
+  element: PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+    phone: PropTypes.string,
+    address: PropTypes.string,
+    coverLetter: PropTypes.string,
+    resume: PropTypes.shape({
+      url: PropTypes.string,
+    }),
+    _id: PropTypes.string,
+  }),
+  deleteApplication: PropTypes.func,
+  openModal: PropTypes.func,
+};
+
 const EmployerCard = ({ element, openModal }) => {
   return (
     <>
@@ -196,4 +213,18 @@ const EmployerCard = ({ element, openModal }) => {
       </div>
     </>
   );
+};
+
+EmployerCard.propTypes = {
+  element: PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+    phone: PropTypes.string,
+    address: PropTypes.string,
+    coverLetter: PropTypes.string,
+    resume: PropTypes.shape({
+      url: PropTypes.string,
+    }),
+  }),
+  openModal: PropTypes.func,
 };
