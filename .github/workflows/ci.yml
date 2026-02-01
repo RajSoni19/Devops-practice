@@ -77,3 +77,32 @@ jobs:
   #         git reset --hard origin/main
   #         docker compose up -d --build
   #       EOF
+
+
+
+# can also use as CD
+#   name: Deploy to EC2
+
+# on:
+#   push:
+#     branches: [main]
+
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v4
+
+#       - name: Deploy via SSH  //It logs into your EC2 server via SSH and runs commands for you.
+#         uses: RajSoni19/ssh-action@v1.0.3 //This avoids Add EC2 host to known_hosts
+#         with:
+#           host: ${{ secrets.EC2_HOST }}
+#           username: ${{ secrets.EC2_USER }}
+#           key: ${{ secrets.EC2_SSH_KEY }}
+#           script: |
+#             cd react-job-portal
+#             git pull origin main
+#             docker-compose down
+#             docker-compose up --build -d
